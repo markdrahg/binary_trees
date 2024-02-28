@@ -2,21 +2,19 @@
 
 /**
  * binary_tree_leaves - Counts the leaves in a binary tree
- * @tree: Pointer to the root node of the tree to count the leaves
+ * @tree: Pointer to the root node of the tree
  *
- * Return: Number of leaves in the tree, or 0 if tree is NULL
+ * Return: Number of leaves in the binary tree, or 0 if tree is NULL
  */
 size_t binary_tree_leaves(const binary_tree_t *tree)
 {
-	if (tree == NULL)
-		return (0);
+    if (tree == NULL)
+        return (0);
 
-	if (tree->left == NULL && tree->right == NULL)
-		return (1);
+    /* If node has no children, it's a leaf */
+    if (tree->left == NULL && tree->right == NULL)
+        return (1);
 
-	size_t left_leaves = binary_tree_leaves(tree->left);
-	size_t right_leaves = binary_tree_leaves(tree->right);
-
-	return (left_leaves + right_leaves);
+    /* Recursively count the leaves in the left and right subtrees */
+    return binary_tree_leaves(tree->left) + binary_tree_leaves(tree->right);
 }
-
